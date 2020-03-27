@@ -1,0 +1,37 @@
+From 75a8583d3a9c69c55d18841d78cc562af7e897b3 Mon Sep 17 00:00:00 2001
+From: md_5 <git@md-5.net>
+Date: Thu, 11 Jan 2018 08:23:43 +1100
+Subject: [PATCH] Allow changing minimum squid spawn range
+
+
+diff --git a/src/main/java/net/minecraft/server/EntitySquid.java b/src/main/java/net/minecraft/server/EntitySquid.java
+index 6bcea493b..8c4f3b2c2 100644
+--- a/src/main/java/net/minecraft/server/EntitySquid.java
++++ b/src/main/java/net/minecraft/server/EntitySquid.java
+@@ -171,7 +171,7 @@ public class EntitySquid extends EntityWaterAnimal {
+     }
+ 
+     public static boolean b(EntityTypes<EntitySquid> entitytypes, GeneratorAccess generatoraccess, EnumMobSpawn enummobspawn, BlockPosition blockposition, Random random) {
+-        return blockposition.getY() > 45 && blockposition.getY() < generatoraccess.getSeaLevel();
++        return blockposition.getY() > generatoraccess.getMinecraftWorld().spigotConfig.squidSpawnRangeMin && blockposition.getY() < generatoraccess.getSeaLevel(); // Spigot
+     }
+ 
+     public void a(float f, float f1, float f2) {
+diff --git a/src/main/java/org/spigotmc/SpigotWorldConfig.java b/src/main/java/org/spigotmc/SpigotWorldConfig.java
+index 3e96bd11c..34964d285 100644
+--- a/src/main/java/org/spigotmc/SpigotWorldConfig.java
++++ b/src/main/java/org/spigotmc/SpigotWorldConfig.java
+@@ -340,4 +340,10 @@ public class SpigotWorldConfig
+         entityMaxTickTime = getInt("max-tick-time.entity", 50);
+         log("Tile Max Tick Time: " + tileMaxTickTime + "ms Entity max Tick Time: " + entityMaxTickTime + "ms");
+     }
++
++    public double squidSpawnRangeMin;
++    private void squidSpawnRange()
++    {
++        squidSpawnRangeMin = getDouble("squid-spawn-range.min", 45.0D);
++    }
+ }
+-- 
+2.20.1
+
