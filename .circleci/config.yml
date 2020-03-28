@@ -34,7 +34,7 @@ jobs:
         paths:
         - ~/.m2
     # Test
-    - run: yes|cp -rf ./StarLink-*.jar $CIRCLE_ARTIFACTS
+    - run: yes|cp -rf ./target/StarLink-*.jar $CIRCLE_ARTIFACTS
     # Teardown
     # Save test results
     - store_test_results:
