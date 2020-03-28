@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/jason920612/StarLink
+    working_directory: ~/jason920612/StarLink/Spigot-Server
     parallelism: 1
     shell: /bin/bash --login
     environment:
@@ -16,7 +16,7 @@ jobs:
     # Prepare for artifact
     - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
     - run:
-        working_directory: ~/jason920612/StarLink
+        working_directory: ~/jason920612/StarLink/Spigot-Server
         command: sudo update-alternatives --set java /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java; sudo update-alternatives --set javac /usr/lib/jvm/java-8-openjdk-amd64/bin/javac; echo -e "export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64" >> $BASH_ENV
     # Dependencies
     # Restore the dependency cache
